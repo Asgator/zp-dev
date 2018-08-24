@@ -1,0 +1,54 @@
+.vacancy-item {
+    padding: 18px 20px;
+    position: relative;
+}
+
+.vacancy-item-left-panel {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.vacancy-item-header {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.vacancy-item-header > div {
+    display: inline-block;
+}
+
+.vacancy-item-sub-text {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.vacancy-item-salary {
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.vacancy-item-company-name {
+    margin-bottom: 12px;
+}
+
+.vacancy-item-city {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 16px;
+}
+
+.vacancy-item-city::after {
+    content: "";
+    display: block;
+    position: relative;
+    left: -11px;
+    top: -11px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #909192;
+}

@@ -1,0 +1,16 @@
+.main-wrapper-logo {
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.main-logo {
+    width: 160px;
+    height: 24px;
+}
+
+.main-sub-title-search {
+    font-size: 13px;
+    line-height: 16px;
+}

@@ -1,38 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {applyMiddleware, createStore} from 'redux';
-import {Provider} from 'react-redux';
-import {Route} from 'react-router';
-import {createHashHistory} from 'history';
-import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
-import thunk from 'redux-thunk';
-import {rootReducer} from './store/reducers';
-import registerServiceWorker from './registerServiceWorker';
-import App from './containers/App';
+import * as VKConnect from '@vkontakte/vkui-connect';
+import { Provider } from 'react-redux';
 
-const history = createHashHistory({
-    hashType: 'noslash'
-});
+import store from 'store/configure-store';
 
-const logger = store => next => action => {
-    console.log('dispatching', action);
-    return next(action);
+import App from './App';
+import registerServiceWorker from './sw';
+import './style.css';
+
+const root = document.getElementById('root');
+
+// Render
+const render = (Component) => {
+	ReactDOM.render(
+		<Provider store={store}>
+			<Component />
+		</Provider>,
+		root
+	);
 };
 
-const store = createStore(
-    rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk, routerMiddleware(history), logger)
-);
+// Init VK App
+VKConnect.send('VKWebAppInit', {});
 
-ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <div>
-                <Route path='/:pageId(about|)?' component={(props) => <App pageId={props.match.params.pageId}/>}/>
-            </div>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById('root')
-);
+render(App);
 
+// Service Worker For Cache
 registerServiceWorker();
